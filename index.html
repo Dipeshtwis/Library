@@ -3,11 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="css/style.css">
 	<title>Library</title>
 </head>
 <body>
-	
-	<script type="text/javascript" src="js/index.js"></script>
+	<div class="container">
+		<form class="form-control">
+			<label for="author">Author: </label>
+			<input type="text" name="author" id="author">
+			<label for="title">Title of the book: </label>
+			<input type="text" name="author" id="title">
+			<label for="num">No. of pages</label>
+			<input type="number" name="author" id="num">
+			<input type="radio" name="status" id="read">
+			<label for="read">Read</label>
+			<input type="radio" name="status" id="unread">
+			<label for="unread">Unread</label>
+			<button class="btn" id="click">Add Book</button>
+		</form>
+	</div>
+
+
+	<script src="js/index.js"></script>
 </body>
 </html>
