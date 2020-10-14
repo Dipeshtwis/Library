@@ -8,48 +8,41 @@ function Book(author, title, num, status){
 	this.info = `${title} written by ${author} has ${num} pages. ${status}`;
 }
 
+Book.prototype.read_status = function(){
+	let str = "";
+	if(this.status == true){
+		str += 'read'
+		return str;
+	}
+	else{
+		str += 'unread'
+		return str;
+	}
+};
+
 function addBookToLibrary(book){
 	myLibrary.push(book)
 }
 
-const tabl = document.getElementById('tab');
 function displayBook(myLibrary){
 	
-	const newBook = document.getElementById('tab').getElementsByTagName('tbody')[0];
-	newBook.className = "alert";
-	tabl.appendChild(newBook);
-	
-	myLibrary.forEach(bokk);
-	function bokk(bokk){
-		const single = newBook.insertRow();
-		const au = single.insertCell(0);
-		let newCell =document.createTextNode(` ${bokk.author}`);
-		au.appendChild(newCell);
-
-		const bu = single.insertCell(1);
-		let newCel = document.createTextNode(` ${bokk.title}`);
-		bu.appendChild(newCel);
-
-		const cu = single.insertCell(2);
-		let newCl = document.createTextNode(` ${bokk.num}`);
-		cu.appendChild(newCl);
-
-		const du = single.insertCell(3);
-		let newl = document.createTextNode(` ${bokk.status}`);
-		du.appendChild(newl);
-
-		const btnCell = single.insertCell(4);
-		let delBtn = document.createElement('button');
-		delBtn.className = 'btn btn-danger';
-		delBtn.textContent = 'Delete';
-		btnCell.appendChild(delBtn);
-
-		// const ti = document.createElement('td');
-		// ti.className = "alert";
-		// ti.innerHTML = ` ${bokk.title}`;
-		// single.appendChild(ti);
-	}
+	const newBook = document.getElementById('tableBody');
+	let str = "";
+	myLibrary.forEach((bokk, index) => {
+		str += `
+		<tr>
+		<td> ${index + 1}</td>
+		<td> ${bokk.author}</td>
+		<td> ${bokk.title}</td>
+		<td> ${bokk.num}</td>
+		<td> ${bokk.status}</td>
+		<td> <button class="btn btn-danger">Delete</button></td>
+		</tr>
+		`
+	});
+	tableBody.innerHTML = str;
 }
+		
 
 const btn = document.getElementById('click');
 if(btn){
@@ -62,8 +55,8 @@ if(btn){
 			status = true;
 		else
 			status = false;
-
 		let book = new Book(author, title, num, status);
+		book.status = book.read_status();
 		addBookToLibrary(book);
 		displayBook(myLibrary);
 	});
