@@ -1,4 +1,10 @@
-let myLibrary = [];
+let myLibrary = [
+{
+	author: "deep",
+	title: "dep",
+	num: 24
+}
+];
 
 function Book(author, title, num, status){
 	this.author = author;
@@ -9,8 +15,9 @@ function Book(author, title, num, status){
 }
 
 function addBookToLibrary(book){
-	myLibrary.push(book);
+	myLibrary.push(book)
 }
+
 
 // function myFunction(){
 	// const author = document.getElementById("author").value;
@@ -27,20 +34,42 @@ function addBookToLibrary(book){
 	// displayBook(myLibrary);
 	// alert("hey!!")
 // }
-
+const from = document.getElementById("container");
 function displayBook(myLibrary){
 	
-	let newBook = document.createElement('div');
-	// newBook.textContent = 'Hello';
-	body.appendChild(newBook);
+	const newBook = document.createElement('div');
+	newBook.className = "alert";
+	 newBook.textContent = 'Hello';
+	document.body.append(newBook);
 	
-	for(let i = 0; i < myLibrary.length; i++) {
-		let para = document.createElement('p');
-		para.innerHTML = `author: ${myLibrary[i].author}`;
-		newBook.appendChild(para);
+	myLibrary.forEach(bokk);
+	function bokk(bokk){
+		const single = document.createElement('p');
+		newBook.className = "alert";
+		newBook.appendChild(single);
+
+		const au = document.createElement('span');
+		au.className = "alert";
+		au.innerHTML = `author: ${bokk.author}`;
+		single.appendChild(au);
+
+		const ti = document.createElement('span');
+		ti.className = "alert";
+		ti.innerHTML = `title: ${bokk.title}`;
+		single.appendChild(ti);
+
+		const nu = document.createElement('span');
+		nu.className = "alert";
+		nu.innerHTML = `pages: ${bokk.num}`;
+		single.appendChild(nu);
 	}
+	// for(let i = 0; i < myLibrary.length; i++) {
+		
+	// }
 }
-const btn = document.getElementById('#click');
+
+// displayBook(myLibrary);
+const btn = document.getElementById('click');
 if(btn){
 	btn.addEventListener('click', () => {
 		const author = document.getElementById("author").value;
