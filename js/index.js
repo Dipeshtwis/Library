@@ -1,9 +1,9 @@
 let myLibrary = [
-{
-	author: "deep",
-	title: "dep",
-	num: 24
-}
+// {
+// 	author: "deep",
+// 	title: "dep",
+// 	num: 24
+// }
 ];
 
 function Book(author, title, num, status){
@@ -34,38 +34,64 @@ function addBookToLibrary(book){
 	// displayBook(myLibrary);
 	// alert("hey!!")
 // }
-const from = document.getElementById("container");
+// 
+const tabl = document.getElementById('tab');
 function displayBook(myLibrary){
 	
-	const newBook = document.createElement('div');
+	const newBook = document.getElementById('tab').getElementsByTagName('tbody')[0];
 	newBook.className = "alert";
-	 newBook.textContent = 'Hello';
-	document.body.append(newBook);
+	tabl.appendChild(newBook);
 	
 	myLibrary.forEach(bokk);
 	function bokk(bokk){
-		const single = document.createElement('p');
-		newBook.className = "alert";
-		newBook.appendChild(single);
+		const single = newBook.insertRow();
+		// const single = document.createElement('tr');
+		// newBook.className = "alert";
+		// newBook.tBodies[0].appendChild(single);
 
-		const au = document.createElement('span');
-		au.className = "alert";
-		au.innerHTML = `author: ${bokk.author}`;
-		single.appendChild(au);
+		const au = single.insertCell(0);
+		// const au = document.createElement('td');
+		// au.className = "alert";
+		// au.innerHTML = ` ${bokk.author}`;
+		let newCell =document.createTextNode(` ${bokk.author}`);
+		au.appendChild(newCell);
 
-		const ti = document.createElement('span');
-		ti.className = "alert";
-		ti.innerHTML = `title: ${bokk.title}`;
-		single.appendChild(ti);
+		const bu = single.insertCell(1);
+		// const au = document.createElement('td');
+		// au.className = "alert";
+		// au.innerHTML = ` ${bokk.author}`;
+		let newCel =document.createTextNode(` ${bokk.title}`);
+		bu.appendChild(newCel);
 
-		const nu = document.createElement('span');
-		nu.className = "alert";
-		nu.innerHTML = `pages: ${bokk.num}`;
-		single.appendChild(nu);
+		const cu = single.insertCell(2);
+		// const au = document.createElement('td');
+		// au.className = "alert";
+		// au.innerHTML = ` ${bokk.author}`;
+		let newCl =document.createTextNode(` ${bokk.num}`);
+		cu.appendChild(newCl);
+
+		const du = single.insertCell(3);
+		// const au = document.createElement('td');
+		// au.className = "alert";
+		// au.innerHTML = ` ${bokk.author}`;
+		let newl =document.createTextNode(` ${bokk.status}`);
+		du.appendChild(newl);
+
+		// const ti = document.createElement('td');
+		// ti.className = "alert";
+		// ti.innerHTML = ` ${bokk.title}`;
+		// single.appendChild(ti);
+
+		// const nu = document.createElement('td');
+		// nu.className = "alert";
+		// nu.innerHTML = ` ${bokk.num}`;
+		// single.appendChild(nu);
+
+		// const st = document.createElement('td');
+		// st.className = "alert";
+		// st.innerHTML = ` ${bokk.status}`;
+		// single.appendChild(st);
 	}
-	// for(let i = 0; i < myLibrary.length; i++) {
-		
-	// }
 }
 
 // displayBook(myLibrary);
