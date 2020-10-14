@@ -35,14 +35,21 @@ function displayBook(myLibrary){
 		<td> ${bokk.author}</td>
 		<td> ${bokk.title}</td>
 		<td> ${bokk.num}</td>
-		<td> ${bokk.status}</td>
+		<td> <input onclick="change()" type="button" value="${bokk.status}" id="myButton1" class="btn btn-primary"></input></td>
 		<td> <button class="btn btn-danger">Delete</button></td>
 		</tr>
 		`
 	});
 	tableBody.innerHTML = str;
 }
-		
+
+function change() // no ';' here
+{
+	var elem = document.getElementById("myButton1");
+	if (elem.value=="read") elem.value = "unread";
+	else elem.value = "read";
+}
+
 
 const btn = document.getElementById('click');
 if(btn){
