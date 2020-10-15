@@ -34,21 +34,27 @@ function displayBook(myLibrary){
 		<td> ${bokk.author}</td>
 		<td> ${bokk.title}</td>
 		<td> ${bokk.num}</td>
-		<td> <input onclick="change(this)" type="button" value="${bokk.status}" id="" class="btn btn-primary"></input></td>
-		<td> <button class="btn btn-danger">Delete</button></td>
+		<td> <input onclick="change(this, ${index})" type="button" value="${bokk.status}" id="" class="btn btn-primary"></input></td>
+		<td> <button onclick="deleted(${index})" class="btn btn-danger">Delete</button></td>
 		</tr>
 		`
 	});
 	tableBody.innerHTML = str;
 }
 
-function change(elem) {
+function change(elem, index) {
 	// var elem = document.getElementById("myButton1");
 	if (elem.value =="read") {
 		elem.value = "unread";
 	}	else {
 		elem.value = "read";
 	}
+	myLibrary[index].status = elem.value;
+}
+
+function deleted(index){
+	myLibrary.splice(index, 1);
+	displayBook(myLibrary);
 }
 
 
