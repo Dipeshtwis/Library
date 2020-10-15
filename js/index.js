@@ -5,7 +5,6 @@ function Book(author, title, num, status){
 	this.title = title;
 	this.num = num;
 	this.status = status;
-	this.info = `${title} written by ${author} has ${num} pages. ${status}`;
 }
 
 Book.prototype.read_status = function(){
@@ -35,7 +34,7 @@ function displayBook(myLibrary){
 		<td> ${bokk.author}</td>
 		<td> ${bokk.title}</td>
 		<td> ${bokk.num}</td>
-		<td> <input onclick="change()" type="button" value="${bokk.status}" id="myButton1" class="btn btn-primary"></input></td>
+		<td> <input onclick="change(this)" type="button" value="${bokk.status}" id="" class="btn btn-primary"></input></td>
 		<td> <button class="btn btn-danger">Delete</button></td>
 		</tr>
 		`
@@ -43,11 +42,13 @@ function displayBook(myLibrary){
 	tableBody.innerHTML = str;
 }
 
-function change() // no ';' here
-{
-	var elem = document.getElementById("myButton1");
-	if (elem.value=="read") elem.value = "unread";
-	else elem.value = "read";
+function change(elem) {
+	// var elem = document.getElementById("myButton1");
+	if (elem.value =="read") {
+		elem.value = "unread";
+	}	else {
+		elem.value = "read";
+	}
 }
 
 
