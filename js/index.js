@@ -76,23 +76,12 @@ function addbook() {
   const book = new Book(author, title, num, status);
   book.status = book.read_status();
   addBookToLibrary(book);
-  const itemsJsonstr = localStorage.getItem('localbook');
-  const itemsJsonArray = JSON.parse(itemsJsonstr);
-  displayBook(itemsJsonArray);
+  displayBook(myLibrary);
   form.reset();
-
-  // if (localStorage.getItem('itemsJson') == null) {
-  //   itemsJsonArray = [];
-  //   itemsJsonArray.push([author, title, num, status]);
-  //   localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray))
-  // }
-  // else{
-  //   itemsJsonstr = localStorage.getItem('itemsJson');
-
-  //   itemsJsonArray.push([author, title, num, status]);
-  //   localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray))
-  // }
 }
 
 form.addEventListener('submit', addbook);
 form.addEventListener('submit', preventRefresh);
+const itemsJsonstr = localStorage.getItem('localbook');
+const itemsJsonArray = JSON.parse(itemsJsonstr);
+displayBook(itemsJsonArray);
