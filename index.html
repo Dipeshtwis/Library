@@ -10,19 +10,19 @@
 <body>
 	<div id="container">
 		<h2 class="text-center">Add Book</h2>
-		<div class="form-control">
+		<form class="form-control" id="form">
 			<label for="author">Author: </label>
-			<input type="text" name="author" id="author">
+			<input type="text" name="author" id="author" required>
 			<label for="title">Title of the book: </label>
-			<input type="text" name="title" id="title">
+			<input type="text" name="title" id="title" required>
 			<label for="num">No. of pages</label>
-			<input type="number" name="num" id="num">
+			<input type="number" name="num" id="num" required>
 			<input type="radio" name="status" value="read" id="read">
 			<label for="read">Read</label>
 			<input type="radio" name="status" value="unread" id="unread">
 			<label for="unread">Unread</label>
-			<button class="btn btn-secondary" id="click">Add Book</button>
-		</div>
+			<input type="submit" class="btn btn-secondary" id="click" value="Add Book">
+		</form>
 	</div>
 
   <div class="container my-4">

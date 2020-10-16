@@ -56,12 +56,13 @@ function deleted(index) {
 }
 /* eslint-enable no-unused-vars */
 
-const btn = document.getElementById('click');
-if (btn) {
-  btn.addEventListener('click', () => {
+const form = document.getElementById('form');
+
+  form.addEventListener('submit', () => {
     const author = document.getElementById('author').value;
     const title = document.getElementById('title').value;
     const num = document.getElementById('num').value;
+  
     let status;
     if (document.getElementById('read').checked) status = true;
     else status = false;
@@ -70,4 +71,8 @@ if (btn) {
     addBookToLibrary(book);
     displayBook(myLibrary);
   });
-}
+
+
+// function resetForm () {
+//   document.getElementById('form-div').reset;
+// }
