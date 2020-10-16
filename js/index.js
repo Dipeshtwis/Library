@@ -20,7 +20,7 @@ Book.prototype.read_status = function () {
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
-  localStorage.setItem('localbook', JSON.stringify(myLibrary))
+  localStorage.setItem('localbook', JSON.stringify(myLibrary));
 }
 
 function displayBook(itemsJsonArray) {
@@ -59,38 +59,40 @@ function deleted(index) {
 
 const form = document.getElementById('form');
 
-  form.addEventListener('submit', addbook);
+const preventRefresh = (event) => {
+  event.preventDefault();
+};
 
-function addbook(){
-    const author = document.getElementById('author').value;
-    const title = document.getElementById('title').value;
-    const num = document.getElementById('num').value;
-  
-    let status;
-    if (document.getElementById('read').checked) status = true;
-    else status = false;
+function addbook() {
+  const author = document.getElementById('author').value;
+  const title = document.getElementById('title').value;
+  const num = document.getElementById('num').value;
 
-    
-    const book = new Book(author, title, num, status);
-    book.status = book.read_status();
-    addBookToLibrary(book);
-    itemsJsonstr = localStorage.getItem('localbook');
-    itemsJsonArray = JSON.parse(itemsJsonstr);
-    displayBook(itemsJsonArray);
+  let status;
+  if (document.getElementById('read').checked) status = true;
+  else status = false;
 
-    // if (localStorage.getItem('itemsJson') == null) {
-    //   itemsJsonArray = [];
-    //   itemsJsonArray.push([author, title, num, status]);
-    //   localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray))
-    // }
-    // else{
-    //   itemsJsonstr = localStorage.getItem('itemsJson');
-      
-    //   itemsJsonArray.push([author, title, num, status]);
-    //   localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray))
-    // }
+
+  const book = new Book(author, title, num, status);
+  book.status = book.read_status();
+  addBookToLibrary(book);
+  const itemsJsonstr = localStorage.getItem('localbook');
+  const itemsJsonArray = JSON.parse(itemsJsonstr);
+  displayBook(itemsJsonArray);
+  form.reset();
+
+  // if (localStorage.getItem('itemsJson') == null) {
+  //   itemsJsonArray = [];
+  //   itemsJsonArray.push([author, title, num, status]);
+  //   localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray))
+  // }
+  // else{
+  //   itemsJsonstr = localStorage.getItem('itemsJson');
+
+  //   itemsJsonArray.push([author, title, num, status]);
+  //   localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray))
+  // }
 }
 
-// function resetForm () {
-//   document.getElementById('form-div').reset;
-// }
+form.addEventListener('submit', addbook);
+form.addEventListener('submit', preventRefresh);
