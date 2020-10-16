@@ -20,12 +20,13 @@ Book.prototype.read_status = function () {
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
+  localStorage.setItem('localbook', JSON.stringify(myLibrary))
 }
 
-function displayBook(myLibrary) {
+function displayBook(itemsJsonArray) {
   const newBook = document.getElementById('tableBody');
   let str = '';
-  myLibrary.forEach((bokk, index) => {
+  itemsJsonArray.forEach((bokk, index) => {
     str += `
     <tr>
       <td> ${index + 1}</td>
@@ -73,21 +74,21 @@ function addbook(){
     const book = new Book(author, title, num, status);
     book.status = book.read_status();
     addBookToLibrary(book);
-    
-    
-    displayBook(myLibrary);
+    itemsJsonstr = localStorage.getItem('localbook');
+    itemsJsonArray = JSON.parse(itemsJsonstr);
+    displayBook(itemsJsonArray);
 
-    if (localStorage.getItem('itemsJson') == null) {
-      itemsJsonArray = [];
-      itemsJsonArray.push([author, title, num, status]);
-      localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray))
-    }
-    else{
-      itemsJsonstr = localStorage.getItem('itemsJson');
-      itemsJsonArray = JSON.parse(itemsJsonstr);
-      itemsJsonArray.push([author, title, num, status]);
-      localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray))
-    }
+    // if (localStorage.getItem('itemsJson') == null) {
+    //   itemsJsonArray = [];
+    //   itemsJsonArray.push([author, title, num, status]);
+    //   localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray))
+    // }
+    // else{
+    //   itemsJsonstr = localStorage.getItem('itemsJson');
+      
+    //   itemsJsonArray.push([author, title, num, status]);
+    //   localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray))
+    // }
 }
 
 // function resetForm () {
