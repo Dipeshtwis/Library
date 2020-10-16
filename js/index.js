@@ -58,7 +58,9 @@ function deleted(index) {
 
 const form = document.getElementById('form');
 
-  form.addEventListener('submit', () => {
+  form.addEventListener('submit', addbook);
+
+function addbook(){
     const author = document.getElementById('author').value;
     const title = document.getElementById('title').value;
     const num = document.getElementById('num').value;
@@ -66,12 +68,27 @@ const form = document.getElementById('form');
     let status;
     if (document.getElementById('read').checked) status = true;
     else status = false;
+
+    
     const book = new Book(author, title, num, status);
     book.status = book.read_status();
     addBookToLibrary(book);
+    
+    
     displayBook(myLibrary);
-  });
 
+    if (localStorage.getItem('itemsJson') == null) {
+      itemsJsonArray = [];
+      itemsJsonArray.push([author, title, num, status]);
+      localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray))
+    }
+    else{
+      itemsJsonstr = localStorage.getItem('itemsJson');
+      itemsJsonArray = JSON.parse(itemsJsonstr);
+      itemsJsonArray.push([author, title, num, status]);
+      localStorage.setItem('itemsJson', JSON.stringify(itemsJsonArray))
+    }
+}
 
 // function resetForm () {
 //   document.getElementById('form-div').reset;
