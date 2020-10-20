@@ -1,15 +1,17 @@
 const myLibrary = [];
 
-const Book = (author, title, num, status) => {
-  const readStatus = () => {
-    let str = '';
-    if (status === true) { str += 'read'; } else { str += 'unread'; }
-    return str;
-  };
-  return {
-    author, title, num, status, readStatus,
-  };
-};
+class Book {
+  constructor(author, title, num, status) {
+    this.author = author;
+    this.title = title;
+    this.num = num;
+    this.status = status;
+  }
+
+  readStatus() {
+    if (this.status === true) { this.status = 'unread'; } else { this.status = 'read'; }
+  }
+}
 
 const addBookToLibrary = (book) => {
   myLibrary.push(book);
@@ -33,7 +35,6 @@ function displayBook(itemsJsonArray) {
   });
   newBook.innerHTML = str;
 }
-
 /* eslint-disable no-unused-vars */
 function change(elem, index) {
   if (elem.value === 'read') {
@@ -66,8 +67,8 @@ function addbook() {
   else status = false;
 
 
-  const book = Book(author, title, num, status);
-  book.status = book.readStatus();
+  const book = new Book(author, title, num, status);
+  book.readStatus();
   addBookToLibrary(book);
   displayBook(myLibrary);
   form.reset();
