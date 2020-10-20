@@ -1,27 +1,21 @@
 const myLibrary = [];
 
-function Book(author, title, num, status) {
-  this.author = author;
-  this.title = title;
-  this.num = num;
-  this.status = status;
-}
-
-Book.prototype.read_status = function () {
-  let str = '';
-  if (this.status === true) {
-    str += 'read';
-    return str;
-  }
-
-  str += 'unread';
-  return str;
+const Book = (author, title, num, status) => {
+  const read_status = () => {
+    let str = '';
+      if (status === true)
+        str += 'read';
+      else
+        str += 'unread';
+      return str;
+  };
+  return {author, title, num, status, read_status};
 };
 
-function addBookToLibrary(book) {
+const addBookToLibrary = (book) => {
   myLibrary.push(book);
   localStorage.setItem('localbook', JSON.stringify(myLibrary));
-}
+};
 
 function displayBook(itemsJsonArray) {
   const newBook = document.getElementById('tableBody');
@@ -73,7 +67,7 @@ function addbook() {
   else status = false;
 
 
-  const book = new Book(author, title, num, status);
+  const book = Book(author, title, num, status);
   book.status = book.read_status();
   addBookToLibrary(book);
   displayBook(myLibrary);
