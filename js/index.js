@@ -1,15 +1,14 @@
 const myLibrary = [];
 
 const Book = (author, title, num, status) => {
-  const read_status = () => {
+  const readStatus = () => {
     let str = '';
-      if (status === true)
-        str += 'read';
-      else
-        str += 'unread';
-      return str;
+    if (status === true) { str += 'read'; } else { str += 'unread'; }
+    return str;
   };
-  return {author, title, num, status, read_status};
+  return {
+    author, title, num, status, readStatus,
+  };
 };
 
 const addBookToLibrary = (book) => {
@@ -68,7 +67,7 @@ function addbook() {
 
 
   const book = Book(author, title, num, status);
-  book.status = book.read_status();
+  book.status = book.readStatus();
   addBookToLibrary(book);
   displayBook(myLibrary);
   form.reset();
